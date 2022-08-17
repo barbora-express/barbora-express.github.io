@@ -1,4 +1,4 @@
-## Barbora Express integration guide
+## Introduction
 
 
 Table of contents
