@@ -1,3 +1,8 @@
+---
+layout: default
+title: First order
+nav_order: 1
+---
 # Creating your first order
 
 ## Basics
