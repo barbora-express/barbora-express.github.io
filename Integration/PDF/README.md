@@ -1,0 +1,1 @@
+# Generating PDF stickers
