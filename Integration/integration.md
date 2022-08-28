@@ -3,7 +3,7 @@ layout: default
 title: Integration
 nav_order: 3
 has_children: true
-permalink: //ui-components
+permalink: //integration
 ---
 
 # Creating your first order
