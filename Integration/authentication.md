@@ -1,3 +1,11 @@
+---
+layout: default
+title: Authentication
+parent: Integration
+nav_order: 0
+permalink: //integration/authentication
+---
+
 # Authentication
 
 We have two authentication methods. 
