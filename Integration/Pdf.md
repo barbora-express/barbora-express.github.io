@@ -7,3 +7,5 @@ permalink: //integration/pdf-generation
 ---
 
 # Stickers
+
+After order is created pdf will be generated automatically
