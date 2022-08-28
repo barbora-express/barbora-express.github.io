@@ -9,3 +9,7 @@ permalink: //integration/pdf-generation
 # Stickers
 
 After order is created pdf will be generated automatically
+
+# Webhooks
+
+On every generated pdf we can invoke webhook.
