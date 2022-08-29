@@ -5,7 +5,6 @@ nav_order: 3
 permalink: //webhooks
 ---
 
-
 # Webhooks
 
 Webhooks is feature designed to inform you about data changes.
@@ -52,7 +51,7 @@ Each webhook will have `x-verification-code` header.
 
 This is webhook payload sha256 hash encrypted with barbora-express private key (**ONLY we know this key**).
 
-To validate this verification code you need to decrypt using [public key]() hash webhook payload and compare with decrypted result.
+To validate this verification code you need to decrypt using [public key](https://barbora-express.github.io/public.key) hash webhook payload and compare with decrypted result.
 
 
 ```javascript
