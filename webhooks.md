@@ -10,10 +10,46 @@ permalink: //webhooks
 
 Webhooks is feature designed to inform you about data changes.
 
+Webhook should return status 200 for successful consumption. 
+
+If webhook returns `400-599` or in other words webhook failed to be delivered it will try again after 5 minutes and will repeat until it will reach 100 failures, after this it will take 12 hours break and start retry again. If webhook fails 300 times it will stop trying.
+
+After this you still will be able to consume all webhooks by triggering them manually in dashboard.
+
+# Webhook types
+
+1. Order status
+  * Created
+  * Planned
+  * In transit
+  * Delivering
+  * Completed
+  * Failed
+2. PDF Sticker generated webhook
 
 ## Creating webhooks
 
 TODO
+
+## Webhook payload
+
+Easiest way to receive webhook payload is by using `@barbora-express/webhooks` npm package
+```typescript
+import { V2 } from `@barbora-express/webhooks`
+
+function consumeWebhook(webhook: V2.OrderStatusWebhook) {}
+function consumeWebhook(webhook: V2.OrderPDFStickerWebhook) {}
+
+```
+
+If you using other languages we have json schema for each webhook
+
+1. [V1.OrderStatusWebhook]()
+1. [V2.OrderStatusWebhook]()
+1. [V2.OrderPDFStickerWebhook]()
+
+You can generate JSON Schema to any type system using [app.quicktype.io](https://app.quicktype.io/)
+
 
 ## Webhook verification
 
