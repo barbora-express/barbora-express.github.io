@@ -2,7 +2,6 @@
 layout: default
 title: Integration
 nav_order: 2
-has_children: true
 permalink: //integration
 ---
 
@@ -97,7 +96,7 @@ If you specified you contact name and phone in drop section you will receive SMS
 Jūsų užsakymas jau pakeliui. Ji galite sekti čia https://st-tracking-barboraexpres.app/xxxx
 ```
 
-> You can also use **REST ENDPOINT** 
+You can also use **REST ENDPOINT** 
 
 ```rest
 POST https://ha.barbora-go.co/api/rest/order
@@ -142,3 +141,7 @@ Authorization: XXXX
 ```
 
 
+## Useful links
+
+1. [GraphQL languages support](https://graphql.org/code)
+1. [GraphQL code generator](https://www.graphql-code-generator.com/)
