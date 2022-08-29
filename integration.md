@@ -98,11 +98,10 @@ Jūsų užsakymas jau pakeliui. Ji galite sekti čia https://st-tracking-barbora
 
 You can also use **REST ENDPOINT** 
 
-```rest
 POST https://ha.barbora-go.co/api/rest/order
 Content-Type: application/json
 Authorization: XXXX
-
+```json
 {
     "data": {
         "orderId": "123",
