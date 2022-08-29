@@ -2,7 +2,7 @@
 layout: default
 title: Webhooks
 nav_order: 3
-permalink: //webhooks
+permalink: //hooks
 ---
 
 # Webhooks
