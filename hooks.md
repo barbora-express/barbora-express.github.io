@@ -32,12 +32,11 @@ TODO
 
 ## Webhook payload
 
-Easiest way to receive webhook payload is by using `@barbora-express/webhooks` npm package
+Easiest way to receive webhook payload is by using [`@barbora-express/webhooks`]() npm package
 ```typescript
-import { V2 } from `@barbora-express/webhooks`
+import { V1 } from `@barbora-express/webhooks`
 
 function consumeWebhook(webhook: V1.OrderWebhook) {}
-
 ```
 
 If you using other languages we have json schema for each webhook
