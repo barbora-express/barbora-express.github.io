@@ -25,7 +25,6 @@ After this you still will be able to consume all webhooks by triggering them man
   * Delivering
   * Completed
   * Failed
-2. PDF Sticker generated webhook
 
 ## Creating webhooks
 
@@ -37,23 +36,23 @@ Easiest way to receive webhook payload is by using `@barbora-express/webhooks` n
 ```typescript
 import { V2 } from `@barbora-express/webhooks`
 
-function consumeWebhook(webhook: V2.OrderStatusWebhook) {}
-function consumeWebhook(webhook: V2.OrderPDFStickerWebhook) {}
+function consumeWebhook(webhook: V1.OrderWebhook) {}
 
 ```
 
 If you using other languages we have json schema for each webhook
 
-1. [V1.OrderStatusWebhook]()
-1. [V2.OrderStatusWebhook]()
-1. [V2.OrderPDFStickerWebhook]()
+1. [V1.OrderWebhook](https://barbora-express.github.io/webhooks/schemas/v1.order-status.json)
 
 You can generate JSON Schema to any type system using [app.quicktype.io](https://app.quicktype.io/)
 
 
 ## Webhook verification
 
-Each webhook will have `x-verification-code` header. This is webhook payload sha256 hash encrypted with barbora-express private key (**ONLY we know this key**).
+Each webhook will have `x-verification-code` header. 
+
+This is webhook payload sha256 hash encrypted with barbora-express private key (**ONLY we know this key**).
+
 To validate this verification code you need to decrypt using [public key]() hash webhook payload and compare with decrypted result.
 
 
