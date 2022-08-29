@@ -37,25 +37,56 @@ Organizations in testing and production are separate entities.
 To reach web sockets use `wss` instead of `https`
 
 ## Executing basic request
-```bash
-curl -POST https://ha.barbora-go.co/v1/graphql -h authorization  Token XXX
-```
-
 ## Using playground
 You can explore full api in dashboard api playground section.
 
 To created order execute this graphql query
 ```graphql
-mutation CreateOrder($data: OrderCreateObject!) {
-    id
+mutation CreateOrder($data:OrdersServiceOrderCreateObject!) {
+    createOrder(data: $data)
 }
 ```
 Variables
+
 ```json
 {
     "data": {
-        "orderId": "XXX", // Have to be unique in your organization.
-        "xzc"
+        "orderId": "123",
+        "barcode": null,
+        "shortId": "1wqw2",
+        "isFrozen": false,
+        "ageLimitation": "N20", // Posable values N18 | N20 
+        "pickup": {
+            // If address is known value you can use reference id 
+                // "addressId": "XXXXXX",
+            "address": { 
+                "address": "Ozo g. 25, Vilnius, 7150", 
+                "contactName": "Your pickup address contact name", 
+                "contactPhone": "+370XXXXXXXX", 
+                "coordinates": [25.260445,54.708843],
+                "notes": "",
+                "info": {
+                    "postcode": "7150"
+                },
+            }
+        },
+        "dropOff": {
+            // If address is known value you can use reference id 
+            // "addressId": "XXXXXX",
+            "address": { 
+                // Address is not mandatory
+                "coordinates": [25.2503825699727,54.69921435],
+                "contactName": "Your drop off address address contact name", 
+                "contactPhone": "+370XXXXXXXX", 
+                "notes": "Durų kodas 5",
+                "info": {
+                    "flat": "53", 
+                    "floor": "12", 
+                    "doorCode": "53#1344", 
+                    "postcode": "7100"
+                },
+            }
+        }
     }
 }
 ```
@@ -64,5 +95,50 @@ If you specified you contact name and phone in drop section you will receive SMS
 
 ```text
 Jūsų užsakymas jau pakeliui. Ji galite sekti čia https://st-tracking-barboraexpres.app/xxxx
-
 ```
+
+> You can also use **REST ENDPOINT** 
+
+```rest
+POST https://ha.barbora-go.co/api/rest/order
+Content-Type: application/json
+Authorization: XXXX
+
+{
+    "data": {
+        "orderId": "123",
+        "barcode": null,
+        "shortId": "1wqw2",
+        "isFrozen": false,
+        "ageLimitation": "N20",
+        "pickup": {
+            "address": { 
+                "address": "Ozo g. 25, Vilnius, 7150", 
+                "contactName": "Your pickup address contact name", 
+                "contactPhone": "+370XXXXXXXX", 
+                "coordinates": [25.260445,54.708843],
+                "notes": "",
+                "info": {
+                    "postcode": "7150"
+                },
+            }
+        },
+        "dropOff": {
+            "address": { 
+                "coordinates": [25.2503825699727,54.69921435],
+                "contactName": "Your drop off address address contact name", 
+                "contactPhone": "+370XXXXXXXX", 
+                "notes": "Durų kodas 5",
+                "info": {
+                    "flat": "53", 
+                    "floor": "12", 
+                    "doorCode": "53#1344", 
+                    "postcode": "7100"
+                },
+            }
+        }
+    }
+}
+```
+
+
