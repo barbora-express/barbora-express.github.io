@@ -32,9 +32,8 @@ Example submitting order at 04:00AM
 1. If courier accepts offer status will change to `WAITING_FOR_COURIER`
 1. Courier will arrive to picking center. After successfully collecting orders status will change to `IN_TRANSIT` if for some reason he will not be able to collect package. Package status will change to `NEED_COURIER` (Example package is not ready to pickup)
 1. After successfully collecting all packages. Courier starts delivering. `STARTED` status indicates that courier is going to delivery location
-1. Upon arrival to delivery location courier will be able to complete order.
-1. At any given point courier can fail order. (Car accident, Customer not found)
-Each case are handled by customer support individually
+1. After the order was given to the customer, courier have to complete the order in the app changing the status of the order to `COMPLETED`
+1. At any given point courier can fail order. (Car accident, Customer not found) Each case are handled by customer support individually. Courier has to go through a process in the app indicating why fail occurred and after the process is complete the status changes to `FAILED`.
 
 ### Order tracking
 
