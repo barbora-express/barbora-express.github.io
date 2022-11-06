@@ -6,16 +6,16 @@ permalink: //
 ---
 # Introduction
 
-TODO:
-
+Barbora Express API is intended for use by merchants who want to use Barbora Express as a last mile carrier partner for their deliveries.
+For more info, get in touch: kristupas.pajeda@barboraexpress.lt
 
 ### Order creation process
 
-Order can be created by self service dashboard or API.
+Order can be created via Self Service dashboard or API.
 
-Submitting order when there is no capacity will lead to `NoCapacityError` this indicates that currently we don't have available couriers.
-
-Example submitting order at 04:00AM
+TODO: implement OrderCreate restrictions !!! (same as in SS)
+#Submitting order when there is no capacity will lead to `NoCapacityError` this indicates that currently we don't have available couriers.
+#Example submitting order at 04:00AM
 
 ### Order lifecyle
 
