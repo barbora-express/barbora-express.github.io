@@ -60,8 +60,11 @@ with variables
     "startAfter": "2022-11-17T17:17:17.000Z",  // Date, required
     "pickup": {
       "address": {
-        "address": "Ozo g. 25, Vilnius, Lithuania",  // string, either address, or coordinates are required 
-        "coordinates": [25.260445, 54.708843],  // number[], either address, or coordinates are required 
+        "address": "Ozo g. 25, Vilnius, Lithuania",  // string, either address, or both coordinates are required 
+        "coordinates": {
+          "lat": 54.70884,  // number, either address, or both coordinates are required
+          "lng": 25.26044   // number, either address, or both coordinates are required
+        },
         "contactName": "Your pickup address contact name",  // string, required
         "contactPhone": "+370XXXXXXXX",  // string with E.164 phone format +[country_code][area_code][phone_number], required
         "notes": "pickup notes"
@@ -70,7 +73,10 @@ with variables
     "dropOff": {
       "address": {
         "address": "Gedimino pr. 5, Vilnius, Lithuania",  // string, either address, or coordinates are required
-        "coordinates": [25.2503825699727, 54.69921435],  // number[], either address, or coordinates are required 
+        "coordinates": {
+          "lat": 54.69921,  // number, either address, or both coordinates are required
+          "lng": 25.25038   // number, either address, or both coordinates are required
+        },
         "contactName": "Your drop off address address contact name",  // string, required
         "contactPhone": "+370XXXXXXXX",  // string with E.164 phone format +[country_code][area_code][phone_number], required
         "notes": "Durų kodas 5",
