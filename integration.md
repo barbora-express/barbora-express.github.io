@@ -9,39 +9,40 @@ permalink: //integration
 
 ## Prerequisites
 
-- You have access token.
+- You have created account in Self Service Web App.
+- You have access API token.
 - Your account is approved by BarboraExpress Team
+
+API tokens can be created via Self Service `Settings` page:
+
+![Workflow](./assets/apiTokenInSelfService.png)
 
 ## Environments
 
 | # | PRODUCTION | TESTING |
-| API | https://ha.barboraexpress.com/v1/graphql | https://ha.barbora-go.co/v1/graphql |
+| API GRAPHQL | https://ha.barboraexpress.com/v1/graphql | https://ha.barbora-go.co/v1/graphql |
+| API REST | https://ha.barboraexpress.com/api/rest/order POST | https://ha.barbora-go.co/api/rest/order POST |
 | WS | wss://ha.barboraexpress.com/v1/graphql | wss://ha.barbora-go.co/v1/graphql |
-| DASHBOARD | https://dashboard.barboraexpress.lt | https://st-dashboard-barboraexpress.app |
-| TRACKING PAGE | https://tracking.barboraexpress.lt | https://st-tracking-barboraexpres.app |
+| SELF SERVICE | https://dashboard.barboraexpress.lt | https://barbora-express-sandbox-stag.web.app |
+| TRACKING PAGE | https://tracking.barboraexpress.lt | https://barbora-express-tracking-stag.web.app |
 
-Use same user logins for production and testing environments. Keep in mind if you first time logging in to testing environment it will prompt you to create new organization.
-
-Organizations in testing and production are separate entities.
+Use same user login credentials for production and testing environments in Self Service. Organizations in testing and production are separate entities.
+First time logging into testing environment you will be asked to create new organization that will be used for testing purposes. Please note that there are no actual couriers in testing environment, but order lifecycle can be simulated by Barbora Express team, please contact your sales representative to arrange that.
 
 > Only login credentials are shared across multiple environments
 
-## Headers
+## Request Headers
 
-| Header        | Value                  |
-| ------------- | ---------------------- |
-| Authorization | (Bearer / Token) xxxxx |
-| Organization  | Your organization slug |
+| Header        | Value               |
+|---------------|---------------------|
+| content-type  | application/json    |
+| authorization | Token xxxxx         |
 
 To reach web sockets use `wss` instead of `https`
 
 ## Executing basic request
 
-## Using playground
-
-You can explore full api in dashboard api playground section.
-
-To created order execute this graphql query
+To create order execute this graphql query via graphql endpoint
 
 ```graphql
 mutation CreateOrder($data: OrdersServiceOrderCreateObject!) {
@@ -49,100 +50,38 @@ mutation CreateOrder($data: OrdersServiceOrderCreateObject!) {
 }
 ```
 
-Variables
+with
 
 ```json
 {
   "data": {
-    "orderId": "123",
-    "barcode": null,
-    "shortId": "1wqw2",
-    "isFrozen": false,
-    "ageLimitation": "N20", // Posable values N18 | N20
+    "orderId": "123456789A",  //  string, unique, required, min 10 length
+    "shortId": "1wqw2",   // string, required, min 4, max 7
+    "startAfter": "2022-11-17T17:17:17.000Z",  // Date, required
     "pickup": {
-      // If address is known value you can use reference id
-      // "addressId": "XXXXXX",
       "address": {
-        "address": "Ozo g. 25, Vilnius, 7150",
-        "contactName": "Your pickup address contact name",
-        "contactPhone": "+370XXXXXXXX",
-        "coordinates": [25.260445, 54.708843],
-        "notes": "",
-        "info": {
-          "postcode": "7150"
-        }
+        "address": "Ozo g. 25, Vilnius, Lithuania",  // string, either address, or coordinates are required 
+        "coordinates": [25.260445, 54.708843],  // number[], either address, or coordinates are required 
+        "contactName": "Your pickup address contact name",  // string, required
+        "contactPhone": "+370XXXXXXXX",  // string with E.164 phone format +[country_code][area_code][phone_number], required
+        "notes": "pickup notes"
       }
     },
     "dropOff": {
-      // If address is known value you can use reference id
-      // "addressId": "XXXXXX",
       "address": {
-        // Address is not mandatory
-        "coordinates": [25.2503825699727, 54.69921435],
-        "contactName": "Your drop off address address contact name",
-        "contactPhone": "+370XXXXXXXX",
+        "address": "Gedimino pr. 5, Vilnius, Lithuania",  // string, either address, or coordinates are required
+        "coordinates": [25.2503825699727, 54.69921435],  // number[], either address, or coordinates are required 
+        "contactName": "Your drop off address address contact name",  // string, required
+        "contactPhone": "+370XXXXXXXX",  // string with E.164 phone format +[country_code][area_code][phone_number], required
         "notes": "Durų kodas 5",
-        "info": {
-          "flat": "53",
-          "floor": "12",
-          "doorCode": "53#1344",
-          "postcode": "7100"
-        }
+        "flat": "53"
       }
     }
   }
 }
 ```
 
-If you specified you contact name and phone in drop section you will receive SMS with tracking link.
-
-```text
-Jūsų užsakymas jau pakeliui. Ji galite sekti čia https://st-tracking-barboraexpres.app/xxxx
-```
-
-You can also use **REST ENDPOINT**
-
-POST https://ha.barbora-go.co/api/rest/order
-Content-Type: application/json
-Authorization: XXXX
-
-```json
-{
-  "data": {
-    "orderId": "123",
-    "barcode": null,
-    "shortId": "1wqw2",
-    "isFrozen": false,
-    "ageLimitation": "N20",
-    "pickup": {
-      "address": {
-        "address": "Ozo g. 25, Vilnius, 7150",
-        "contactName": "Your pickup address contact name",
-        "contactPhone": "+370XXXXXXXX",
-        "coordinates": [25.260445, 54.708843],
-        "notes": "",
-        "info": {
-          "postcode": "7150"
-        }
-      }
-    },
-    "dropOff": {
-      "address": {
-        "coordinates": [25.2503825699727, 54.69921435],
-        "contactName": "Your drop off address address contact name",
-        "contactPhone": "+370XXXXXXXX",
-        "notes": "Durų kodas 5",
-        "info": {
-          "flat": "53",
-          "floor": "12",
-          "doorCode": "53#1344",
-          "postcode": "7100"
-        }
-      }
-    }
-  }
-}
-```
+Or make a POST call to REST endpoint with the same payload.
 
 ## Useful links
 
