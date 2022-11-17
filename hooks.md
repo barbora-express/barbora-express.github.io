@@ -14,7 +14,7 @@ If webhook fails 300 times, it will stop trying.
 
 # Webhook types
 
-1. Order status
+Order status
   * Created
   * Active
   * Started
@@ -35,13 +35,14 @@ Webhook JSON schema:
 
 Webhook payload types are described in [`@barbora-express/webhooks`]() npm package, using this package is one of the options to process webhooks like so:
 
-You can generate JSON Schema for any type system using [app.quicktype.io](https://app.quicktype.io/)
-
 ```typescript
 import { V1 } from `@barbora-express/webhooks`
 
 function consumeWebhook(webhook: V1.OrderWebhook) {}
 ```
+
+You can generate JSON Schema for any type system using [app.quicktype.io](https://app.quicktype.io/)
+
 ## Webhook verification
 
 Each webhook will have `x-verification-code` header. 
