@@ -1,24 +1,16 @@
-[//]: # (---)
-
-[//]: # (layout: default)
-
-[//]: # (title: Webhooks)
-
-[//]: # (nav_order: 2)
-
-[//]: # (permalink: //hooks)
-
-[//]: # (---)
+---
+layout: default
+title: Webhooks
+nav_order: 2
+permalink: //hooks
+---
 
 # Webhooks
 
 Webhooks are designed to inform merchant about order status changes.
 
-Webhook should return status 200 for successful consumption. 
-
-If webhook returns `400-599` or in other words webhook failed to be delivered it will try again after 5 minutes and will repeat until it will reach 100 failures, after this it will take 12 hours break and start retry again. If webhook fails 300 times it will stop trying.
-
-After this you still will be able to consume all webhooks by triggering them manually in dashboard.
+Webhook should return status 200 for successful consumption. If webhook failed to be delivered (calling webhook returned `400-599`), it will be tried calling again after 5 minutes and repeated until 100 failures, then after 12 hours break will be retried again.
+If webhook fails 300 times, it will stop trying.
 
 # Webhook types
 
@@ -31,24 +23,25 @@ After this you still will be able to consume all webhooks by triggering them man
 
 ## Creating webhooks
 
-TODO
+Webhooks can be created via Self Service `Settings` page:
+
+![Workflow](./assets/webhooksInSelfService.png)
 
 ## Webhook payload
 
-Easiest way to receive webhook payload is by using [`@barbora-express/webhooks`]() npm package
+Webhook JSON schema:
+
+[V1.OrderWebhook](https://barbora-express.github.io/webhooks/schemas/v1.order-status.json)
+
+Webhook payload types are described in [`@barbora-express/webhooks`]() npm package, using this package is one of the options to process webhooks like so:
+
+You can generate JSON Schema for any type system using [app.quicktype.io](https://app.quicktype.io/)
+
 ```typescript
 import { V1 } from `@barbora-express/webhooks`
 
 function consumeWebhook(webhook: V1.OrderWebhook) {}
 ```
-
-If you using other languages we have json schema for each webhook
-
-1. [V1.OrderWebhook](https://barbora-express.github.io/webhooks/schemas/v1.order-status.json)
-
-You can generate JSON Schema to any type system using [app.quicktype.io](https://app.quicktype.io/)
-
-
 ## Webhook verification
 
 Each webhook will have `x-verification-code` header. 
