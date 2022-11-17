@@ -6,6 +6,7 @@ permalink: //
 ---
 # Introduction
 
+
 Barbora Express API (further referred as API) is intended for use by merchants who want to use Barbora Express as a last mile carrier partner for their deliveries.
 For more info, get in touch: kristupas.pajeda@barboraexpress.lt
 
@@ -38,4 +39,4 @@ On every status change webhook may be set to merchant api endpoint. This allows 
 
 ### Order delivery pricing
 
-Order price is calculated on order creation and will be finalized on terminal state `COMPLETED` | `FAILED`.
+Order price is calculated on order creation and will be finalized on terminal state `COMPLETED` or `FAILED`.

@@ -9,9 +9,9 @@ permalink: //integration
 
 ## Prerequisites
 
-- You have created account in Self Service Web App.
-- You have access API token.
+- You have created an account in Self Service Web App.
 - Your account is approved by BarboraExpress Team
+- You have access API token.
 
 API tokens can be created via Self Service `Settings` page:
 
@@ -50,7 +50,7 @@ mutation CreateOrder($data: OrdersServiceOrderCreateObject!) {
 }
 ```
 
-with
+with variables
 
 ```json
 {
@@ -81,7 +81,7 @@ with
 }
 ```
 
-Or make a POST call to REST endpoint with the same payload.
+Or make a POST call to REST endpoint with the same payload as graphql variable.
 
 ## Useful links
 
