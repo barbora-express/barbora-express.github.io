@@ -1,13 +1,18 @@
----
-layout: default
-title: Webhooks
-nav_order: 3
-permalink: //hooks
----
+[//]: # (---)
+
+[//]: # (layout: default)
+
+[//]: # (title: Webhooks)
+
+[//]: # (nav_order: 2)
+
+[//]: # (permalink: //hooks)
+
+[//]: # (---)
 
 # Webhooks
 
-Webhooks is feature designed to inform you about data changes.
+Webhooks are designed to inform merchant about order status changes.
 
 Webhook should return status 200 for successful consumption. 
 
@@ -19,9 +24,8 @@ After this you still will be able to consume all webhooks by triggering them man
 
 1. Order status
   * Created
-  * Planned
-  * In transit
-  * Delivering
+  * Active
+  * Started
   * Completed
   * Failed
 
