@@ -56,7 +56,7 @@ with variables
 {
   "data": {
     "orderId": "123456789A",  //  string, unique, required, min 10 length
-    "shortId": "1wqw2",   // string, required, min 4, max 7
+    "shortId": "1wqw2",   // string, required, min 4, max 8
     "startAfter": "2022-11-17T17:17:17.000Z",  // Date, required
     "pickup": {
       "address": {
